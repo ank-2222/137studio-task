@@ -79,9 +79,6 @@ function Home() {
 
   const totalQues = question.length; //count of question
 
-  let answer = new Array(totalQues); //initialize intial array of size total question with default value of 0
-
-  for (let i = 0; i < totalQues; ++i) answer[i] = 0;
   const [count, setCount] = useState(0); //current count of question number
 
   const [progress, setProgress] = useState(100 / totalQues); //count of question number for progress bar
@@ -90,7 +87,9 @@ function Home() {
 
 
 
+  let answer = new Array(totalQues); //initialize intial array of size total question with default value of 0
 
+  for (let i = 0; i < totalQues; ++i) answer[i] = 0;
 
   const getItem = async () => {
     //get answer from local storage 
@@ -150,9 +149,16 @@ function Home() {
 
 
   useEffect(() => {
-    localStorage.setItem("answer",answer);
+    
+
+    localStorage.setItem("answer",JSON.stringify(answer));
+  }, []);
+
+  useEffect(() => {
+    
+
     getItem();
-  }, [nextHandler, prevHandler]);
+  }, [nextHandler,prevHandler]);
 
   return (
     <>
