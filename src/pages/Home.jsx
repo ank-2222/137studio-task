@@ -150,6 +150,7 @@ function Home() {
 
 
   useEffect(() => {
+    localStorage.setItem("answer",answer);
     getItem();
   }, [nextHandler, prevHandler]);
 
